@@ -19,5 +19,5 @@ script:
 
 after_success:
   - docker build -t ${NAME}:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER} .
-  - docker tag ${NAME}:${TRAVIS_BRANCH}-latest ${NAME}:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}
+  - docker tag ${NAME}:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER} ${NAME}:${TRAVIS_BRANCH}-latest
   - docker push ${NAME}:${TRAVIS_BRANCH}-latest
