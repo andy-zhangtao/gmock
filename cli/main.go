@@ -3,5 +3,7 @@ package main
 import "gmock/web"
 
 func main() {
-	web.Run()
+	if err := web.Run(); err != nil {
+		panic(err)
+	}
 }
