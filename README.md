@@ -1,8 +1,17 @@
 # gmock
+[![Build Status](https://travis-ci.com/andy-zhangtao/gmock.svg?branch=main)](https://travis-ci.com/andy-zhangtao/gmock)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=andy-zhangtao_gmock)
+
 
 A sidecar use for mock test
 
+## Run
+
+`gmock`启动后加载配置文件，然后当请求uri与配置文件中设定的uri相同时，返回配置文件中设定好的数据。
+
 ## Configure
+
+`gmock`启动时通过`CONF_PATH`读取配置文件内容，配置文件格式如下：
 
 ```toml
 [[conf]]

@@ -1,0 +1,23 @@
+language: go
+
+go:
+  - "1.15"
+
+env:
+  global:
+    - NAME=vikings/gmock
+
+services:
+  - docker
+
+before_script:
+  - echo "$DOCKER_PASSWD" | docker login -u "$DOCKER_USER" --password-stdin
+
+script:
+  - go test ./...
+  - go build -o bin/gmock cli/main.go
+
+after_success:
+  - docker build -t ${NAME}:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER} .
+  - docker tag ${NAME}:${TRAVIS_BRANCH}-latest ${NAME}:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}
+  - docker push ${NAME}:${TRAVIS_BRANCH}-latest
