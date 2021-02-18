@@ -15,6 +15,7 @@ A sidecar use for mock test
 
 ```toml
 [[conf]]
+method="GET"
 uri = "接口url"
 # 返回响应码
 status = 200
@@ -35,3 +36,29 @@ type = "json"
 [conf.body.data]
 result = "a json body"
 ```
+
+## Example
+
+拷贝下面的内容到文件conf.toml中，然后执行` docker run -it -p 8080:8080 --rm -v $(PWD)/conf.toml:/conf.toml -e CONF_PATH=/conf.toml vikings/gmock:main-latest`
+然后可以请求`gmock`，验证是否返回预期结果。
+
+```toml
+[[conf]]
+method="GET"
+uri = "/user/id"
+# 返回响应码
+status = 201
+[conf.header]
+# 返回的响应header
+content-type = "application/json"
+cookie = "a unit test"
+
+[conf.body]
+# 设定返回body数据格式
+# 如果是string，则data是一个字符串
+
+type = "json"
+[conf.body.data]
+result = "a json body"
+```
+![](./doc/img/get-api.gif)
